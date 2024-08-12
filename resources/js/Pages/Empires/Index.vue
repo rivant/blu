@@ -7,15 +7,15 @@ const props = defineProps({
         type: Array,
         required: true,
     },
-    alert: String 
+    success: String 
 });
 </script>
 
 <template>
   <GuestLayout>
     <Head title="Empires" />
-    <div v-if="alert" class="alert alert-success" role="alert">
-      {{ alert }}
+    <div v-if="success" class="alert alert-success" role="alert">
+      {{ success }}
     </div>
     <div class="mb-2">
       <span>Current Empires | </span>

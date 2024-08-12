@@ -4,7 +4,8 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, usePage, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps({
   releases: Array,
@@ -26,6 +27,11 @@ const submit = () => {
           'name', 'architecture', 'continent', 'focus', 'unique_units', 'unique_technologies', 'unique_buildings'
         ),
     });
+};
+
+const cancelCreate = (event) => {
+  event.preventDefault();
+  Inertia.visit(route('empires.index'));
 };
 </script>
 
@@ -86,10 +92,11 @@ const submit = () => {
         <InputError class="mt-2" :message="form.errors.unique_buildings" />
       </div>
 
-      <div class="flex items-center justify-end mt-4">
+      <div class="flex items-center justify-between mt-4">
         <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
             Add
         </PrimaryButton>
+        <button class="ms-4 btn btn" @click="cancelCreate">Cancel</button>
       </div>
     </form>
   </GuestLayout>

@@ -15,6 +15,7 @@ class EmpireController extends Controller
 
     return Inertia::render('Empires/Index', [
       'empires' => $empires,
+      'success' => session('success')
     ]);
   }
   
@@ -24,6 +25,7 @@ class EmpireController extends Controller
 
     return Inertia::render('Empires/Show', [
       'empire' => $empire,
+      'success' => session('success')
     ]);
   }
 
@@ -72,14 +74,14 @@ class EmpireController extends Controller
       'release_id' => $request['release_id'],
     ]);
 
-    return redirect()->route('empires.show', ['empire' => $empire->id])->with('success', "{$empire} empire deleted");
+    return redirect()->route('empires.show', ['empire' => $empire->id])->with('success', "{$empire['name']} Empire updated");
   }
   
   public function destroy(Empire $empire)
   {
     Empire::destroy($empire->id);
 
-    return redirect()->route('empires.index')->with('success', "{$empire} empire deleted");
+    return redirect()->route('empires.index')->with('success', "{$empire['name']} Empire removed");
   }
 }
 
