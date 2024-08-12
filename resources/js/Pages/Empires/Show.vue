@@ -25,6 +25,9 @@ const destroyEmpire = () => {
     <div class="row">
       <div class="col-md-6">
         <div class="card">
+          <div v-if="success" class="alert alert-success" role="alert">
+            {{ success }}
+          </div>
           <div class="card-header">
             <h3 class="d-inline text-primary"><strong>{{ empire.name }} Empire</strong> | </h3>
             <a :href="route('empires.index', { id: empire.id })" class="underline">Return to List</a>
